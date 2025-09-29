@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-import scikit-learn
+import sklearn
 
 # Load the trained model
 with open('trained_model.pkl', 'rb') as f:
@@ -59,6 +59,7 @@ st.bar_chart({
     "Tank Level": [input_df['Tank_Level'][0]],
     "Expected Consumption per Hour": [input_df['Petrol_Liters_Sold'][0]]
 })
+
 
 
 
