@@ -47,21 +47,16 @@ input_df = user_input_features()
 st.subheader("Input Features")
 st.write(input_df)
 
-# --- Prediction ---
-prediction = model.predict(input_df)[0]
+# --- Prediction only when button clicked ---
+if st.button("🔮 Predict"):
+    prediction = model.predict(input_df)[0]
+    
+    st.subheader("⛽ Predicted Time to Run Out Tank")
+    st.success(f"{prediction:.2f} hours")  # adjust units if days
 
-st.subheader("⛽ Predicted Time to Run Out Tank")
-st.success(f"{prediction:.2f} hours")  # or days depending on your model
-
-# Optional: Add chart showing predicted consumption vs tank level
-st.subheader("Tank Level vs Expected Consumption")
-st.bar_chart({
-    "Tank Level": [input_df['Tank_Level'][0]],
-    "Expected Consumption per Hour": [input_df['Petrol_Liters_Sold'][0]]
-})
-
-
-
-
-
-
+    # Optional chart
+    st.subheader("Tank Level vs Expected Consumption")
+    st.bar_chart({
+        "Tank Level": [input_df['Tank_Level'][0]],
+        "Expected Consumption per Hour": [input_df['Petrol_Liters_Sold'][0]]
+    })
